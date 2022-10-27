@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -45,17 +46,16 @@ public class BookServiceTest {
 	
 	@Test
 	void getBooks() {
-		List<Book> expected = List.of(
-			Book.builder()
-			.author("Test author")
-			.bookID(2L)
-			.description("This is story book 2")
-			.title("Story Book 2")
-			.publishDate(LocalDate.of(2022, 10, 28))
-			.build()
-		);
+		List<Book> expected = new ArrayList<>();
+		expected.add(Book.builder()
+				.author("Test author")
+				.bookID(2L)
+				.description("This is story book 2")
+				.title("Story Book 2")
+				.publishDate(LocalDate.of(2022, 10, 28))
+				.build());
 		List<Book> actual = bookService.getBooks("Story", "story", "author", LocalDate.of(2022, 10, 28));
-		assertEquals(Set.copyOf(expected), Set.copyOf(actual));
+		assertEquals(expected, actual);
 	}
 	
 	@Test
