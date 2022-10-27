@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Optional;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,8 @@ public class BookControllerTest {
 	
 	@Test
 	void getBooks() throws Exception {
-		when(bookService.getBooks(any(), any(), any(), any())).thenReturn(List.of());
+		List<Book> res = new ArrayList<>();
+		when(bookService.getBooks(any(), any(), any(), any())).thenReturn(res);
 		mockMvc.perform(get("/api/books")).andExpect(status().isOk());
 	}
 	
